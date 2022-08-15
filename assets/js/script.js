@@ -127,4 +127,112 @@ var displayStartQuizHandler = function () {
     // writes quiz time to the corresponding document element
     timerEl.textContent = timeLeft;
 };
-  /* -------------------- ENDS DISPLAYS -------------------- */
+/* -------------------- ENDS DISPLAYS -------------------- */
+
+/* -------------------- BEGINS APP METHODS -------------------- */
+/* ----- Declares a function to reset score, quiz (question number) & timer, and display quiz screen ----- */
+var startQuizHandler = function () {
+    // resets score to 0
+    score = 0;
+    // resets quiz to first question
+    questionNumber = 0;
+
+    displayQuiz();
+    countdown();
+    nextQuestion();
+};
+
+/* ----- quiz timer countdown ----- */
+var countdown = function () {
+    timeInterval = setInterval(function () {
+        if (timeLeft > 0) {
+            timerEl.textContent = timeLeft;
+            timeLeft--;
+        } else {
+            timerEl.textContent = "0";
+            clearInterval(timeInterval);
+            // ends quiz when time is up
+            displayAllDone();
+        }
+        // timer interval in milliseconds
+    }, 1000);
+};
+
+/* ----- displays questions and answer choices ----- */
+var nextQuestion = function () {
+    // hides the result of the previous question until a choice is made for the current question
+    hideResult();
+
+    // clears the previous answer-choices list
+    answersListEl.textContent = "";
+
+    // writes new question
+    questionEl.innerHTML = mcq[questionNumber].q;
+
+    // finds the number of possible answers to the new question
+    answerChoicesCount = mcq[questionNumber].a.length;
+
+    // writes answer choices for the question
+    for (let i = 0; i < answerChoicesCount; i++) {
+        const answerChoiceEl = document.createElement("li");
+        answerChoiceEl.textContent = mcq[questionNumber].a[i];
+        answersListEl.appendChild(answerChoiceEl);
+        answerChoiceEl.addEventListener("click", result);
+    }
+};
+
+/* ----- checks result of each answer ----- */
+var result = function () {
+    // removes event listeners to avoid multiple answers to same question during displaying of result
+    for (let i = 0; i < answerChoicesCount; i++) {
+        answersListEl.childNodes[i].removeEventListener("click", result);
+    }
+
+    // highlights chosen answer element
+    event.target.style.backgroundColor = "#bd60e7";
+
+    // gets text content of chosen answer
+    var chosenAnswer = event.target.textContent;
+
+    // identifies correct answer from list of answer choices
+    var correctAnswer = mcq[questionNumber].c;
+
+    // checks result of chosenAnswer vs correctAnswer
+    if (chosenAnswer === correctAnswer) {
+        resultEl.textContent = "Correct!";
+        // in case answer is correct, score is increased by 10 points
+        score += 10;
+    } else {
+        resultEl.textContent = "Incorrect!";
+        // in case answer is incorrect, time left is reduced by 10 seconds
+        timeLeft -= 10;
+    }
+
+    // calls function to turn on display of result of answer (correct or incorrect)
+    displayResult();
+
+    // calls function to check whether to continue to the quiz, or if this was the last question -> end the quiz
+    checkQuizEnd();
+};
+
+/* ----- displays the result for 2 seconds, then checks whether to move to next question or if questions list is finished ----- */
+var checkQuizEnd = function () {
+    questionNumber++;
+
+    // if there are more questions on the list, then it displays the next question
+    if (questionNumber < mcq.length) {
+        setTimeout(function () {
+            nextQuestion();
+        }, 2000);
+        // if questions are finished, then it ends quiz
+    } else {
+        setTimeout(function () {
+            // goes to all done screen
+            displayAllDone();
+        }, 2000);
+        //ends test
+        timerEl.textContent = timeLeft;
+        clearInterval(timeInterval);
+        // timeLeft = 0;
+    }
+};
