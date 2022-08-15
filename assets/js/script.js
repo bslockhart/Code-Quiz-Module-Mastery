@@ -20,3 +20,6 @@ const finalScoreEl = document.getElementById("final-score");
 const highScoreFormEl = document.getElementById("high-score-form");
 const initialsEl = document.getElementById("initials");
 const highScoresListEl = document.getElementById("high-scores-list");
+
+// declares timer for quiz
+const quizTime = 75;
