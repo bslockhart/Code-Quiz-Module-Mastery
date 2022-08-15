@@ -21,9 +21,50 @@
             <p id="timer">75</p>
         </div>
     </header>
-    <main>
-        <div>
+    <main id="main">
+        <div id="start-quiz-screen">
+            <h1>Coding Quiz Challenge</h1>
+            <p>
+                Try to answer the following code-related questions within the time
+                limit.<br />Keep in mind that incorrect answers will penalize your
+                score/time by ten seconds!
+            </p>
+            <button class="btn" id="start-quiz-btn">Start Quiz</button>
+        </div>
 
+        <div id="quiz-screen">
+            <section class="question">
+                <h2 id="question"></h2>
+            </section>
+
+            <section class="answers"></section>
+            <ol id="answers-list"></ol>
+
+            <section id="result-screen">
+                <hr />
+                <p id="result"></p>
+            </section>
+        </div>
+
+        <div id="all-done-screen">
+            <h1>All done!</h1>
+            <h2 id="final-score"></h2>
+            <br />
+            <h2 class="enter-initials">Enter initials:</h2>
+            <form id="high-score-form">
+                <input id="initials" type="text" required oninput="this.setCustomValidity('')"
+                    oninvalid="this.setCustomValidity('Please enter your intitials')" />
+                <button class="btn" id="initials-btn">Submit</button>
+            </form>
+        </div>
+
+        <div id="high-scores-screen">
+            <h1>High Scores</h1>
+            <ol id="high-scores-list"></ol>
+            <button class="btn" id="go-back-btn">Go back</button>
+            <button class="btn" id="clear-high-scores-btn">
+                Clear high scores
+            </button>
         </div>
     </main>
 
