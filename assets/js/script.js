@@ -242,93 +242,93 @@ var sortHighScores = function (highScoresLS) {
     highScoresLS.sort((a, b) => (a.scoreKey < b.scoreKey ? 1 : -1));
     return highScoresLS;
 };
-  /* -------------------- ENDS APP METHODS -------------------- */
+/* -------------------- ENDS APP METHODS -------------------- */
 
-  /* -------------------- BEGINS LOCALSTORAGE -------------------- */
+/* -------------------- BEGINS LOCALSTORAGE -------------------- */
 /* ---------- sets initials and score to local storage ---------- */
 var setScore = function (event) {
     // prevents the initials submit from triggering a refresh of index.html
     event.preventDefault();
     // this field is set to `required` meaning that it will not save if field is left empty
     var initials = initialsEl.value;
-  
+
     // stores high score as an object
     var highScore = {
-      initialsKey: initials,
-      scoreKey: score,
+        initialsKey: initials,
+        scoreKey: score,
     };
-  
+
     // gets existing high score list from local storage, if any
     highScoresLS = JSON.parse(localStorage.getItem("highScores"));
     // if the current score is zero, then it is not a high score, and nothing is recorded
     if (score === 0) {
-      /* if the current score is more than zero, then:
-      it checks if list is empty, if yes, then the current score is added to the list */
+        /* if the current score is more than zero, then:
+        it checks if list is empty, if yes, then the current score is added to the list */
     } else if (score > 0 && !highScoresLS) {
-      highScoresLS = [highScore];
-      // otherwise, if the list has content, then it sorts the high scores
+        highScoresLS = [highScore];
+        // otherwise, if the list has content, then it sorts the high scores
     } else {
-      // adds current score at index 0 of the high scores list array
-      highScoresLS.unshift(highScore);
-      // calls function to sort high scores by score in descending order
-      sortHighScores(highScoresLS);
-      // limits high score to top 5 by deleting index 5, if applicable
-      if (highScoresLS.length === 6) {
-        highScoresLS.pop();
-      }
+        // adds current score at index 0 of the high scores list array
+        highScoresLS.unshift(highScore);
+        // calls function to sort high scores by score in descending order
+        sortHighScores(highScoresLS);
+        // limits high score to top 5 by deleting index 5, if applicable
+        if (highScoresLS.length === 6) {
+            highScoresLS.pop();
+        }
     }
-  
+
     // updates the high scores list in local storage after adding the current score, if applicable, and sorting the list
     localStorage.setItem("highScores", JSON.stringify(highScoresLS));
-  
+
     // calls function to display the high scores
     displayHighScoresHandler();
-  };
-  
-  /* ---------- gets initials and high scores from local storage ---------- */
-  var getHighScores = function () {
+};
+
+/* ---------- gets initials and high scores from local storage ---------- */
+var getHighScores = function () {
     // resets high score elements
     highScoresListEl.textContent = "";
-  
+
     // gets update of high scores from localStorage
     highScoresLS = JSON.parse(localStorage.getItem("highScores"));
-  
+
     // creates html elements for high scores (lines print even if they are empty)
     for (let i = 0; i < 5; i++) {
-      var highScoresListItemEl = document.createElement("li");
-      if (highScoresLS !== null && i < highScoresLS.length) {
-        highScoresListItemEl.textContent =
-          highScoresLS[i].initialsKey + " - " + highScoresLS[i].scoreKey;
-      } else {
-        highScoresListItemEl.textContent = "";
-      }
-      highScoresListEl.appendChild(highScoresListItemEl);
+        var highScoresListItemEl = document.createElement("li");
+        if (highScoresLS !== null && i < highScoresLS.length) {
+            highScoresListItemEl.textContent =
+                highScoresLS[i].initialsKey + " - " + highScoresLS[i].scoreKey;
+        } else {
+            highScoresListItemEl.textContent = "";
+        }
+        highScoresListEl.appendChild(highScoresListItemEl);
     }
-  };
-  
-  /* ---------- clears high scores in local storage ---------- */
-  var clearHighScoreHandler = function () {
+};
+
+/* ---------- clears high scores in local storage ---------- */
+var clearHighScoreHandler = function () {
     localStorage.removeItem("highScores");
     getHighScores();
-  };
-  /* -------------------- ENDS LOCALSTORAGE -------------------- */
-  
-  /* -------------------- BEGINS EVENT HANDLERS -------------------- */
-  // calls function to start quiz
-  startBtn.onclick = startQuizHandler;
-  
-  // calls function to display next question in quiz
-  questionEl.onclick = nextQuestion;
-  
-  // triggers saving initials and score
-  highScoreFormEl.addEventListener("submit", setScore);
-  
-  // displays high scores screen
-  viewHighScoresEl.onclick = displayHighScoresHandler;
-  
-  // triggers clearing high scores list
-  clearHighScoresBtn.onclick = clearHighScoreHandler;
-  
-  // button in high scores screen, goes back to start quiz screen
-  goBackBtn.onclick = displayStartQuizHandler;
-  /* -------------------- ENDS EVENT HANDLERS -------------------- */
+};
+/* -------------------- ENDS LOCALSTORAGE -------------------- */
+
+/* -------------------- BEGINS EVENT HANDLERS -------------------- */
+// calls function to start quiz
+startBtn.onclick = startQuizHandler;
+
+// calls function to display next question in quiz
+questionEl.onclick = nextQuestion;
+
+// triggers saving initials and score
+highScoreFormEl.addEventListener("submit", setScore);
+
+// displays high scores screen
+viewHighScoresEl.onclick = displayHighScoresHandler;
+
+// triggers clearing high scores list
+clearHighScoresBtn.onclick = clearHighScoreHandler;
+
+// button in high scores screen, goes back to start quiz screen
+goBackBtn.onclick = displayStartQuizHandler;
+/* -------------------- ENDS EVENT HANDLERS -------------------- */
