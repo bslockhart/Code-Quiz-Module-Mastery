@@ -331,4 +331,4 @@ clearHighScoresBtn.onclick = clearHighScoreHandler;
 
 // button in high scores screen, goes back to start quiz screen
 goBackBtn.onclick = displayStartQuizHandler;
-/* -------------------- ENDS EVENT HANDLERS -------------------- */
+/* -------------------- ENDS EVENT HANDLERS -------------------- */ 

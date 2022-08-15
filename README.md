@@ -88,4 +88,4 @@ The following image shows the web application's appearance:
 ### Submission
 * Date Submitted: August 23, 2022
 * The URL of the deployed application: https://bslockhart.github.io/Code-Quiz-Module-Mastery
-* The URL of the GitHub repository that contains your code: https://github.com/bslockhart/Code-Quiz-Module-Mastery
+* The URL of the GitHub repository that contains your code: https://github.com/bslockhart/Code-Quiz-Module-Mastery 
