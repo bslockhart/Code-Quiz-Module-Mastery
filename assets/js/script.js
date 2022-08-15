@@ -236,3 +236,10 @@ var checkQuizEnd = function () {
         // timeLeft = 0;
     }
 };
+
+/* ----- sorts high score list by score ----- */
+var sortHighScores = function (highScoresLS) {
+    highScoresLS.sort((a, b) => (a.scoreKey < b.scoreKey ? 1 : -1));
+    return highScoresLS;
+};
+  /* -------------------- ENDS APP METHODS -------------------- */
