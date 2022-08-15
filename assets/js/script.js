@@ -54,3 +54,23 @@ const mcq = [
         c: "console.log",
     },
 ];
+
+/* ---------- declares global variables ---------- */
+// declares a variable that points to the constant quizTime because it is referenced twice in the file, so we're avoiding error of having to change it twice
+var timeLeft = quizTime;
+/* declares a global variable to store remaining time to show at end of quiz
+also used for clearInterval to stop timer once questions are finished */
+var timeInterval;
+
+// tracks current question number
+var questionNumber = 0;
+
+// tracks number of anwer choices for current question
+var answerChoicesCount;
+
+// keeps score
+var score = 0;
+
+// declares an array to store the high score list in local storage, if any
+var highScoresLS = [];
+/* -------------------- ENDS DECLARING GLOBAL CONSTANTS AND VARIABLES -------------------- */
