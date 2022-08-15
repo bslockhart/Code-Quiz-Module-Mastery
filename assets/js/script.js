@@ -74,3 +74,57 @@ var score = 0;
 // declares an array to store the high score list in local storage, if any
 var highScoresLS = [];
 /* -------------------- ENDS DECLARING GLOBAL CONSTANTS AND VARIABLES -------------------- */
+
+/* -------------------- BEGINS DISPLAYS -------------------- */
+// turns off start quiz screen and turns on quiz screen
+var displayQuiz = function () {
+    startQuizScreenEl.style.display = "none";
+    quizScreenEl.style.display = "initial";
+};
+
+// displays result for each question after answer
+var displayResult = function () {
+    resultScreenEl.style.display = "initial";
+};
+
+// hides result for each question before answer
+var hideResult = function () {
+    resultScreenEl.style.display = "none";
+};
+
+// displays all done screen
+var displayAllDone = function () {
+    headerEl.style.visibility = "visible";
+    startQuizScreenEl.style.display = "none";
+    quizScreenEl.style.display = "none";
+    highScoresScreenEl.style.display = "none";
+    allDoneScreenEl.style.display = "initial";
+    // writes the final score
+    finalScoreEl.textContent = "Your final score is " + score + ".";
+};
+
+// displays high scores screen
+var displayHighScoresHandler = function () {
+    headerEl.style.visibility = "hidden";
+    startQuizScreenEl.style.display = "none";
+    quizScreenEl.style.display = "none";
+    allDoneScreenEl.style.display = "none";
+    highScoresScreenEl.style.display = "initial";
+    // calls function to get and display updated high scores from localStorage
+    getHighScores();
+};
+
+/* displays start quiz screen and turns off high scores screen
+(responds to "Go back" button in high scores screen) */
+var displayStartQuizHandler = function () {
+    headerEl.style.visibility = "visible";
+    highScoresScreenEl.style.display = "none";
+    startQuizScreenEl.style.display = "initial";
+    // resets timer
+    clearInterval(timeInterval);
+    // resets quiz time in seconds
+    timeLeft = quizTime;
+    // writes quiz time to the corresponding document element
+    timerEl.textContent = timeLeft;
+};
+  /* -------------------- ENDS DISPLAYS -------------------- */
