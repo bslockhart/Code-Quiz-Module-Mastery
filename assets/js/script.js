@@ -1,4 +1,4 @@
-/* -------------------- BEGINS DECLARING GLOBAL CONSTANTS AND VARIABLES -------------------- */
+//! BEGINS DECLARING GLOBAL CONSTANTS AND VARIABLES
 /* ---------- declares the different views/screens to turn them on and off ---------- */
 const startQuizScreenEl = document.getElementById("start-quiz-screen");
 const quizScreenEl = document.getElementById("quiz-screen");
@@ -6,7 +6,7 @@ const resultScreenEl = document.getElementById("result-screen");
 const allDoneScreenEl = document.getElementById("all-done-screen");
 const highScoresScreenEl = document.getElementById("high-scores-screen");
 
-/* ---------- declares constants to point to the different html elements and buttons needed for this project ---------- */
+/* ---------- declares constants to point to the different html elements and buttons needed ---------- */
 const headerEl = document.getElementById("header");
 const viewHighScoresEl = document.getElementById("view-high-scores");
 const timerEl = document.getElementById("timer");
@@ -73,9 +73,9 @@ var score = 0;
 
 // declares an array to store the high score list in local storage, if any
 var highScoresLS = [];
-/* -------------------- ENDS DECLARING GLOBAL CONSTANTS AND VARIABLES -------------------- */
+//! ENDS DECLARING GLOBAL CONSTANTS AND VARIABLES
 
-/* -------------------- BEGINS DISPLAYS -------------------- */
+//! BEGINS DISPLAYS
 // turns off start quiz screen and turns on quiz screen
 var displayQuiz = function () {
     startQuizScreenEl.style.display = "none";
@@ -127,10 +127,10 @@ var displayStartQuizHandler = function () {
     // writes quiz time to the corresponding document element
     timerEl.textContent = timeLeft;
 };
-/* -------------------- ENDS DISPLAYS -------------------- */
+//! ENDS DISPLAYS
 
-/* -------------------- BEGINS APP METHODS -------------------- */
-/* ----- Declares a function to reset score, quiz (question number) & timer, and display quiz screen ----- */
+//! BEGINS APP METHODS
+/* Declares a function to reset score, quiz (question number) & timer, and display quiz screen */
 var startQuizHandler = function () {
     // resets score to 0
     score = 0;
@@ -242,9 +242,9 @@ var sortHighScores = function (highScoresLS) {
     highScoresLS.sort((a, b) => (a.scoreKey < b.scoreKey ? 1 : -1));
     return highScoresLS;
 };
-/* -------------------- ENDS APP METHODS -------------------- */
+//! ENDS APP METHODS
 
-/* -------------------- BEGINS LOCALSTORAGE -------------------- */
+//! BEGINS LOCALSTORAGE
 /* ---------- sets initials and score to local storage ---------- */
 var setScore = function (event) {
     // prevents the initials submit from triggering a refresh of index.html
@@ -331,4 +331,4 @@ clearHighScoresBtn.onclick = clearHighScoreHandler;
 
 // button in high scores screen, goes back to start quiz screen
 goBackBtn.onclick = displayStartQuizHandler;
-/* -------------------- ENDS EVENT HANDLERS -------------------- */ 
+//! ENDS EVENT HANDLERS
