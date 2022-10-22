@@ -24,37 +24,6 @@ const highScoresListEl = document.getElementById("high-scores-list");
 // declares timer for quiz
 const quizTime = 75;
 
-// declares the array of multiple choice questions (objects): q: questions, a: answers and c: correct answers
-const mcq = [
-    {
-        q: "Commonly used data types DO Not Include:",
-        a: ["strings", "booleans", "alerts", "numbers"],
-        c: "alerts",
-    },
-    {
-        q: "The condition in an if / else statement is enclosed with ________.",
-        a: ["quotes", "curly brackets", "parenthesis", "square brackets"],
-        c: "parenthesis",
-    },
-    {
-        q: "Arrays in JavaScript can be used to store _______.",
-        a: ["numbers and strings", "other arrays", "booleans", "all of the above"],
-        c: "all of the above",
-    },
-    {
-        q:
-            "String values must be enclosed within _______ when being assigned to variables.",
-        a: ["commas", "curly brackets", "quotes", "parenthesis"],
-        c: "quotes",
-    },
-    {
-        q:
-            "A very useful tool used during development and debugging for printing content to the debugger is:",
-        a: ["JavaScript", "terminal/bash", "for loops", "console.log"],
-        c: "console.log",
-    },
-];
-
 /* ---------- declares global variables ---------- */
 // declares a variable that points to the constant quizTime because it is referenced twice in the file, so we're avoiding error of having to change it twice
 var timeLeft = quizTime;
@@ -247,7 +216,7 @@ var sortHighScores = function (highScoresLS) {
 //! BEGINS LOCALSTORAGE
 /* ---------- sets initials and score to local storage ---------- */
 var setScore = function (event) {
-    // prevents the initials submit from triggering a refresh of index.html
+       // prevents the initials submit from triggering a refresh of index.html
     event.preventDefault();
     // this field is set to `required` meaning that it will not save if field is left empty
     var initials = initialsEl.value;
@@ -260,6 +229,7 @@ var setScore = function (event) {
 
     // gets existing high score list from local storage, if any
     highScoresLS = JSON.parse(localStorage.getItem("highScores"));
+    console.log(highScores)
     // if the current score is zero, then it is not a high score, and nothing is recorded
     if (score === 0) {
         /* if the current score is more than zero, then:
